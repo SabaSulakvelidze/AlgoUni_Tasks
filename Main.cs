@@ -4,7 +4,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Task_3();
+        Task_4();
 
         static void Task_1()
         {
@@ -203,6 +203,147 @@ internal class Program
             else if (arr30.Contains(d)) res = 30;
             else if (arr31.Contains(d)) res = 31;
             Console.WriteLine(res);
+        }
+
+        static void Task_4() 
+        {
+            //1.დაწერეთ პროგრამა რომელიც კონსოლში გამოპრინტავს რიცხვებს 0 დან 10 - ის ჩათვლით.გამოიყენეთ while და for ციკლები.
+            int j = 0;
+            while (j <= 10) 
+            {
+                Console.WriteLine(j);
+                j++;
+            }
+
+            for (int i = 0; i <= 10; i++) Console.WriteLine(i);
+
+            //2.დაწერეთ პროგრამა, რომელიც ბეჭდავს ლუწ რიცხვებს 1 - დან 20 - მდე for loop - ის გამოყენებით.
+            for (int i = 0; i < 20; i++) if(i % 2 == 0) Console.WriteLine(i);
+
+            //3.დაწერეთ პროგრამა, რომელიც სთხოვს მომხმარებელს შეიყვანოს რიცხვი და დაბეჭდოს "Hello!" იმდენჯერ რამდენსაც უდრის
+            //ეს შეყვანილი რიცხვი.
+            Console.Write("Enter number: ");
+            string input = Console.ReadLine();
+            int num;
+            if (int.TryParse(input, out num)) 
+                for (int i = 0; i < num; i++) Console.WriteLine("Hello!");
+            else Console.WriteLine("Invalid input.");
+
+            //4.დაწერეთ პროგრამა, რომელიც გამოთვლის რიცხვების ჯამს 1 - დან 100 - მდე for loop - ის გამოყენებით და დაბეჭდავს
+            //შედეგს.
+            int result = 0;
+            for (int i = 0; i < 100; i++) result += i;
+            Console.WriteLine($"Sum: {result}");
+
+            //5.დაწერეთ პროგრამა, რომელიც გამოთვლის კენტი რიცხვების ჯამს 1 - დან 100 - მდე და დაბეჭდავს შედეგს.
+            int resultOdd = 0;
+            for (int i = 0; i < 100; i++) if(i%2!=0) resultOdd += i;
+            Console.WriteLine($"Sum: {resultOdd}");
+
+            //6.დაწერეთ პროგრამა, რომელიც სთხოვს მომხმარებელს გამოიცნოს საიდუმლო რიცხვი 1 - დან 10 - მდე.განაგრძეთ
+            //გამოცნობის მოთხოვნა, სანამ ისინი სწორად გამოიცნობენ, while loop - ის გამოყენებით.
+            bool b = true;
+            int secretNum = new Random().Next(1, 10);
+           
+            while (b) 
+            {
+                Console.Write("Guess the number between 1 and 9: ");
+                string input6 = Console.ReadLine();
+                int output6;
+                if (int.TryParse(input6, out output6))
+                {
+                    if (output6 == secretNum)
+                    {
+                        Console.WriteLine("Congrats! you guessed it!");
+                        b = false;
+                    }
+                    else 
+                    {
+                        Console.WriteLine("No! try again!");
+                    }
+                        
+                }
+            }
+
+            //7)დაწერეთ პროგრამა, რომელიც შეეკითხება მომხმარებელს ქულას და გამოიტანს შესაბამის შეფასებას. 91 - 100->A;
+            //81 - 90->B, 71-> 80: C, 61 - 70->D, 51 - 60->E, 0 - 50->ჩაიჭრა.გამოიყენეთ ორივე - if/else if/else ,switch-case
+            Console.Write("Enter your points: ");
+            String input7 = Console.ReadLine();
+            int p;
+            String result7 = "";
+            if (int.TryParse(input7, out p))
+            {
+                switch (p)
+                {
+                    case <= 50:
+                        result7 = "F";
+                        break;
+                    case >= 51 and <= 60:
+                        result7 = "E";
+                        break;
+                    case >= 61 and <= 70:
+                        result7 = "D";
+                        break;
+                    case >= 71 and <= 80:
+                        result7 = "C";
+                        break;
+                    case >= 81 and <= 90:
+                        result7 = "B";
+                        break;
+                    case >= 91 and <= 100:
+                        result7 = "A";
+                        break;
+                }
+
+                Console.WriteLine($"Your letter grade is: {result7}");
+            }
+
+            //8)დაწერეთ პროგრამა, რომელიც მიიღებს შეფასებას(A, B, C, D ან F) ინფუთის სახით და დაბეჭდავს შესაბამის შეტყობინებას.
+            //მაგალითად, თუ ინფუთი არის "A", უნდა დაბეჭდოს "შესანიშნავი!" გამოიყენეთ switch-case
+            Console.Write("Enter your leter grade: ");
+            String g = Console.ReadLine();
+            String result8 = "";
+            switch (g)
+            {
+                case "A":
+                    result8 = "Excelent";
+                    break;
+                case "B":
+                    result8 = "Good";
+                    break;
+                case "C":
+                    result8 = "Average";
+                    break;
+                case "D":
+                    result8 = "Weak";
+                    break;
+                case "E":
+                    result8 = "Poor";
+                    break;
+                case "F":
+                    result8 = "Failing";
+                    break;
+            }
+            Console.WriteLine(result8);
+
+            //9)დაწერეთ პროგრამა, რომელიც ინფუთის სახით მიიღებს თვის რიცხვს(1 იანვრისთვის, 2 თებერვლისთვის და ა.შ.)
+            //და ამობეჭდავს დღეების რაოდენობას ამ თვეში. გამოიყენეთ  switch-case
+            Console.Write("Enter index of a month: ");
+            String input9 = Console.ReadLine();
+            int d;
+            int res = 0;
+            if (int.TryParse(input9, out d)) {
+                switch (d)
+                {
+                    case 2: res = 28;
+                        break;
+                    case 4 or 6 or 9 or 11: res = 30;
+                        break;
+                    case 1 or 3 or 5 or 7 or 8 or 10 or 12: res = 31;
+                        break;
+                }
+                    Console.WriteLine(res);
+            }
         }
     }
 }
