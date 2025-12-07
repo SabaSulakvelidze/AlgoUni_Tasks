@@ -467,7 +467,7 @@ internal class Program
         return new string(word.Reverse().ToArray()).Equals(word);
     }
 
-    private static void Main(string[] args)
+    static void Task_6() 
     {
         sayHello();
 
@@ -490,5 +490,198 @@ internal class Program
         Console.WriteLine(sumInRange(5, 100));
 
         Console.WriteLine(isPalendrome("abba"));
+    }
+
+    static bool isArraySorted(int[] arr)
+    {
+        for (int i = 0; i < arr.Length - 1; i++)
+        {
+            if (arr[i] > arr[i + 1]) return false;
+        }
+        return true;
+    }
+
+    static int[] removeElement(int[] array,int intToRemove)
+    {
+        int[] newArray = new int[array.Length - 1];
+        int indexToRemove = -1;
+
+        for (int i = 0; i < array.Length; i++)
+            if (array[i] == intToRemove)
+                indexToRemove = i;
+
+        for (int i = 0; i < indexToRemove; i++)
+            newArray[i] = array[i];
+
+        for (int i = indexToRemove + 1; i < array.Length; i++)
+            newArray[i - 1] = array[i];
+
+        return newArray;
+    }
+
+    static bool areArraysEqual(int[] arr1, int[] arr2)
+    {
+        if (arr1.Length != arr2.Length) return false;
+        for (int i = 0; i < arr1.Length; i++)
+            if (arr1[i] != arr2[i])
+                return false;
+        return true;
+    }
+
+    static void sortArray(int[] arr)
+    {
+        while (!isArraySorted(arr))
+        {
+            int temp = 0;
+            for (int i = 0; i < arr.Length - 1; i++)
+            {
+                if (arr[i] > arr[i + 1])
+                {
+                    temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                }
+            }
+        }
+    }
+
+    static int[] mergeAndSortArrays(int[] arr1, int[] arr2)
+    {
+        int[] result = new int[arr1.Length + arr2.Length];
+
+        for (int i = 0; i < arr1.Length; i++)
+            result[i] = arr1[i];
+        for (int i = 0; i < arr2.Length; i++)
+            result[i+arr1.Length] = arr2[i];
+        sortArray(result);
+        return result;
+    }
+
+    static int findCommonElement(int[][] arr)
+    {
+        int common = 0;
+        int count;
+        for (int i = 0; i < arr[0].Length; i++)
+        {    
+            common = arr[0][i];
+            count = 0;
+            for (int j = 1; j < arr.Length; j++)
+            {
+                if (arrayContainsInt(common, arr[j])) count++;
+                else break;
+            }
+            if (count==arr.Length-1) break;
+        }
+        return common;
+    }
+
+    static bool arrayContainsInt(int a, int[] arr)
+    {
+        foreach (int i in arr)
+            if (a == i)
+                return true;
+        return false;
+    }
+
+    static void Task_7()
+    {
+        int[] array = { 4, 1, 7, 9, 2, 6, 8, 3, 5 };
+        //1.დაწერეთ პროგრამა, რომ იპოვოთ მასივის ყველა რიცხვის ჯამი.
+        int sum1 = 0;
+        foreach (int i in array) sum1 += i;
+        Console.WriteLine($"#1: {sum1}");
+
+        //2.დაწერეთ პროგრამა მასივში რიცხვების საშუალოს საპოვნელად.
+        int sum2 = 0;
+        foreach (int i in array) sum2 += i;
+        Console.WriteLine($"#2: {sum2 / array.Length}");
+
+        //3.დაწერეთ პროგრამა რიცხვების მასივის ზრდის მიხედვით დასალაგებლად.
+        //Array.Sort(array);
+        sortArray(array);
+        Console.WriteLine($"#3: {isArraySorted(array)}");
+        Array.ForEach(array, Console.Write);
+        Console.WriteLine();
+        
+        //4.დაწერეთ პროგრამა მასივში ყველაზე დიდი ელემენტის მოსაძებნად.
+        int max = array[0];
+        foreach (int i in array) if (max < i) max = i;
+        Console.WriteLine($"#4: {max}");
+        
+        //5.დაწერეთ პროგრამა მასივის ყველაზე პატარა ელემენტის მოსაძებნად.
+        int min = array[0];
+        foreach (int i in array) if (min > i) min = i;
+        Console.WriteLine($"#5: {min}");
+
+        //6.დაწერეთ პროგრამა, რათა შეამოწმოთ, შეიცავს თუ არა მასივი კონკრეტულ ელემენტს.
+        Console.WriteLine("#6: ");
+        int num5 = 5;
+        bool result5 = false;
+        foreach (int i in array) 
+            if (num5 == i) result5 = true;
+        Console.WriteLine(result5 ? $"array contains number {num5}" : $"array does not contain number {num5}");
+
+        //7.დაწერეთ პროგრამა მასივიდან ელემენტის ამოსაღებად.
+        int[] result7 = removeElement(array, 4);
+        Console.WriteLine("#7: ");
+        Array.ForEach(result7, Console.Write);
+        Console.WriteLine();
+        
+        //8.დაწერეთ პროგრამა მასივში კონკრეტული ელემენტის გავრცელების რაოდენობის დასათვლელად.
+        int[] array8 = { 1, 1, 1, 6, 2, 3, 4, 5, 6, 2, 3 };
+        int count = 0;
+        int num8 = 1;
+        foreach (int i in array8) if (i == num8) count++;
+        Console.WriteLine($"#8: number {num8} appears {count} times");
+
+        //9.დაწერეთ პროგრამა, რომ იპოვოთ მასივის ყველა ლუწი რიცხვის ჯამი.
+        int result9 = 0;
+        foreach (int i in array)
+            if (i % 2 == 0) result9 += i;
+        Console.WriteLine($"#9: {result9}");
+        
+        //10.დაწერეთ პროგრამა მასივში სიდიდით მეორე რიცხვის მოსაძებნად.
+        removeElement(array, max);
+        int newMax = array[0];
+        foreach (int i in array) if (newMax < i) newMax = i;
+        Console.WriteLine($"#10: {newMax}");
+        
+        //11.დაწერეთ პროგრამა, რათა შეამოწმოთ არის თუ არა ორი მასივი ტოლი.
+        int[] arr1 = { 1, 2, 3 };
+        int[] arr2 = { 1, 2, 4 };
+        
+        Console.WriteLine($"#11: {areArraysEqual(arr1, arr2)}");
+
+        //12.დაწერეთ პროგრამა რომ ორი სორტირებული მასივის შერთდეს და გახდეს ერთი მასივი რომელიც ასევე სორტირებული იქნება.
+
+        int[] mergSortedArr = mergeAndSortArrays(arr1, arr2);
+
+        Console.WriteLine("#12: ");
+        Array.ForEach(mergSortedArr, Console.Write);
+        Console.WriteLine();
+
+        //13.დაწერეთ პროგრამა სტრიქონების მასივის ანბანის მიხედვით დასალაგებლად.
+        string[] words = { "apple", "house", "train", "river", "light" };
+        Array.Sort(words);
+
+        Console.WriteLine("#13: ");
+        Array.ForEach(words, Console.Write);
+        Console.WriteLine();
+
+        //14.დაწერეთ პროგრამა მრავალ მასივებს შორის საერთო ელემენტების მოსაძებნად.
+        int[][] arrays = {
+            new int[] { 7, 12, 18, 26 },
+            new int[] { 3, 7, 19, 41 },
+            new int[] { 5, 22, 7, 33 },
+            new int[] { 7, 14, 29, 55 }
+        };
+        Console.WriteLine($"#13: {findCommonElement(arrays)}");
+    }
+
+    private static void Main(string[] args)
+    {
+
+        Task_7();
+
     }
 }
