@@ -4,22 +4,20 @@ using System.Text;
 
 namespace AlgoUni_Tasks
 {
-    internal class Person
+    internal class Book
     {
-        private int age;
+        private string title;
 
-        public int Age
+        public string Title
         {
             set 
             {
-                if (value > 0) age = value;
+                if (!string.IsNullOrEmpty(value)) title = value;
             }
             get
             {
-                return age;
+                return title;            
             }
         }
-
-      
     }
 }
