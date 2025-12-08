@@ -10,7 +10,7 @@ using Rectangle = AlgoUni_Tasks.Rectangle;
 
 internal class Program
 {
-    
+
 
     private static void Main(string[] args)
     {
@@ -49,17 +49,45 @@ internal class Program
 
         // დავალებები კონსტრუქტორების გამოყენებით:
         //6. დაწერეთ კლასი `Laptop`, რომლის კონსტრუქტორს გადაეცემა ლეპტოპის მოდელი და ოპერატიული მეხსიერების ზომა.
+        Laptop laptop = new Laptop("HP Spectre x360", 16);
+
         //7. შექმენით კლასი `Phone`, რომელიც მიიღებს ტელეფონის მოდელს და ფერს კონსტრუქტორის მეშვეობით და გამოიყენებს ფროფერთებს მოდელის და ფერისთვის.
+        Phone phone = new Phone("IPhone 11","Red");
+
         //8. შექმენით კლასი `Movie`, რომლის კონსტრუქტორი მიიღებს სათაურს და გამოშვების წელს.
+        Movie movie = new Movie("The Martian", 2015);
+
         //9. დაწერეთ კლასი `Employee`, რომლის კონსტრუქტორი მიიღებს თანამშრომლის სახელს და სამუშაო პოზიციას.
+        Employee employee = new Employee("ანა მაჩაიძე", "პროგრამისტი");
+
         //10. შექმენით კლასი `Order`, რომლის კონსტრუქტორს ექნება პარამეტრი პროდუქტის სახელის და რაოდენობის მითითებით.
+        Order order1 = new Order("KeyBoard", 2);
+
+
 
         // დავალებები მემკვიდრეობაზე:
         //11. შექმენით კლასები `Animal` და `Dog`. `Dog` მიიღებს მემკვიდრეობით `Animal` კლასის ველებს და დაამატებს თავის თვისებას `Breed`.
+        Animal animal = new Animal();
+        animal.MakeNoise();
+
+        Dog dog = new Dog();
+        dog.MakeNoise();
+        dog.Breed();
+
         //12. დაწერეთ კლასები `Shape` და `Circle`. `Circle` მიიღებს მემკვიდრეობით `Shape`-ის ველს `Color` და დაამატებს `Radius` ფროფერთს.
+        Circle circle = new Circle();
+        circle.Colour = "Blue";
+        circle.Radius = 2;
+        
         //13. დაწერეთ კლასები `Vehicle` და `Bike`, სადაც `Bike` მიიღებს მემკვიდრეობით `Vehicle`-ის ველებს და დაამატებს თავის ველს `Type`.
+        
+        
         //14. დაწერეთ კლასები `Person` და `Student`. `Student` მიიღებს მემკვიდრეობით `Person`-ის თვისებებს და დაამატებს `Grade` ფროფერთს.
+        
+        
         //15. შექმენით კლასები `Employee` და `Manager`, სადაც `Manager` მიიღებს მემკვიდრეობით `Employee`-ის თვისებებს და დაამატებს `TeamSize` ფროფერთს.
+
+
 
         // დავალებები სტატიკური კლასებისა და მეთოდების გამოყენებით:
         //16. შექმენით სტატიკური კლასი `MathHelper`, რომელიც გამოიყენებს სტატიკურ მეთოდს ორი რიცხვის ჯამის დასათვლად.

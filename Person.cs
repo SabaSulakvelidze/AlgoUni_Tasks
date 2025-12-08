@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Schema;
 
 namespace AlgoUni_Tasks
 {
@@ -20,6 +21,9 @@ namespace AlgoUni_Tasks
             }
         }
 
-      
+        public void AddBalance()
+        { 
+            
+        }
     }
 }
