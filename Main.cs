@@ -15,13 +15,13 @@ internal class Program
 
         Person p = new Person("Saba", "Sulakvelidze", 31, "Not AlgoUni");
 
-        Console.WriteLine(p.toString());
+        Console.WriteLine(p.ToString());
 
         Console.WriteLine("===========");
 
         Person p1 = new Person("Saba", "Sulakvelidze", 31);
 
-        Console.WriteLine(p1.toString());
+        Console.WriteLine(p1.ToString());
 
         //2) შექმენით Cat კლასი,რომელსაც ექნება სახელი,ასაკი და მეთოდი სახელად Speak რომელიც დაპრინტავს " meow" ,გამოიყენეთ კონსტრუქტორი.
         //შექმენით პროგრამ კლასში რამდენიმე Cat კლასის ინსტანსი, და გამოიძახეთ მეთოდი Speak.

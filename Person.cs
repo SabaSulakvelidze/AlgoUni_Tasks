@@ -31,7 +31,7 @@ namespace AlgoUni_Tasks
             this.univeristy = "AlgoUni";
         }
 
-        public string toString() 
+        public override string ToString() 
         {
             return $"""
                 name: {name}
