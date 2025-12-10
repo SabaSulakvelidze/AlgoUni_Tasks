@@ -78,16 +78,22 @@ internal class Program
         Circle circle = new Circle();
         circle.Colour = "Blue";
         circle.Radius = 2;
-        
+
         //13. დაწერეთ კლასები `Vehicle` და `Bike`, სადაც `Bike` მიიღებს მემკვიდრეობით `Vehicle`-ის ველებს და დაამატებს თავის ველს `Type`.
-        
-        
+        Bike bike = new Bike("Harley Devidson","Chopper");
+        Console.WriteLine(bike.Manufacturer);
+        Console.WriteLine(bike.Type);
+
         //14. დაწერეთ კლასები `Person` და `Student`. `Student` მიიღებს მემკვიდრეობით `Person`-ის თვისებებს და დაამატებს `Grade` ფროფერთს.
-        
-        
+        Student student1 = new Student(31,"Saba","A");
+        Console.WriteLine(student1.Name);
+        Console.WriteLine(student1.Grade);
+
         //15. შექმენით კლასები `Employee` და `Manager`, სადაც `Manager` მიიღებს მემკვიდრეობით `Employee`-ის თვისებებს და დაამატებს `TeamSize` ფროფერთს.
-
-
+        Manager manager = new Manager("John","Sales",5);
+        Console.WriteLine(manager.Name);
+        Console.WriteLine(manager.Position);
+        Console.WriteLine(manager.TeamSize);
 
         // დავალებები სტატიკური კლასებისა და მეთოდების გამოყენებით:
         //16. შექმენით სტატიკური კლასი `MathHelper`, რომელიც გამოიყენებს სტატიკურ მეთოდს ორი რიცხვის ჯამის დასათვლად.

@@ -6,10 +6,11 @@ namespace AlgoUni_Tasks
 {
     internal class Bike:Vehicle
     {
-        private string type;
-        public Bike(string manufactuirer):base(manufacturer)
+        public string Type { get; set; }
+
+        public Bike(string manufacturer, string type) : base(manufacturer)
         {
-            
+            Type = type;
         }
     }
 }

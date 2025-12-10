@@ -21,9 +21,11 @@ namespace AlgoUni_Tasks
             }
         }
 
-        public void AddBalance()
-        { 
-            
+        public Person(int age)
+        {
+            Age = age;
         }
+
+        public Person(){ }
     }
 }
