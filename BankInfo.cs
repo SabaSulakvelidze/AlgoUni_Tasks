@@ -23,7 +23,8 @@ namespace AlgoUni_Tasks
 
         public void subtractBalance(double amount)
         {
-            this.balance -= amount;
+            if (amount <= this.balance) this.balance -= amount;
+            else Console.WriteLine("Not Enaugh balance for this amount!");
         }
 
 
