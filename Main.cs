@@ -97,10 +97,19 @@ internal class Program
 
         // დავალებები სტატიკური კლასებისა და მეთოდების გამოყენებით:
         //16. შექმენით სტატიკური კლასი `MathHelper`, რომელიც გამოიყენებს სტატიკურ მეთოდს ორი რიცხვის ჯამის დასათვლად.
+        Console.WriteLine(MathHelper.Sum(5, 6));
         //17. დაწერეთ სტატიკური კლასი `StringHelper`, რომელიც შეიცავს სტატიკურ მეთოდს, რომელიც ამოწმებს არის თუ არა სტრიქონი ცარიელი.
+        Console.WriteLine(StringHelper.IsEmpty(""));
+        Console.WriteLine(StringHelper.IsEmpty("asdwadas"));
         //18. შექმენით სტატიკური კლასი `ConversionHelper`, რომელიც შეიცავს სტატიკურ მეთოდს, რომელიც გადაიყვანს კილომეტრებს მილებში.
+        Console.WriteLine(ConversionHelper.ToMile(15));
+        Console.WriteLine(ConversionHelper.ToKm(25));
         //19. დაწერეთ სტატიკური კლასი `TemperatureConverter`, რომელიც შეიცავს სტატიკურ მეთოდს, რომელიც ცელსიუსებს ფარენჰეიტში გადაიყვანს.
+        Console.WriteLine(TemperatureConverter.ToFarenheit(36));
+        Console.WriteLine(TemperatureConverter.ToCelsius(100));
         //20. შექმენით სტატიკური კლასი `Calculator`, რომელიც შეიცავს სტატიკურ მეთოდს, რომელიც აბრუნებს ორნიშნა რიცხვის მაქსიმალურ მნიშვნელობას.
-
+        Console.WriteLine(Calculator.Max(45));
+        Console.WriteLine(Calculator.Max(10));
+        Console.WriteLine(Calculator.Max(155));
     }
 }

@@ -10,6 +10,9 @@ namespace AlgoUni_Tasks
         public string Grade{ private set; get; }
 
         public Student() { }
+        public Student(string name) {
+            Name = name;
+        }
 
         public Student(int age,string name,string grade):base(age)
         {
