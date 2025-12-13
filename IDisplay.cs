@@ -4,8 +4,8 @@ using System.Text;
 
 namespace AlgoUni_Tasks
 {
-    internal interface IRaceVehicle
+    internal interface IDisplay<T>
     {
-        void ActivateTurbo();
+        public void Display(T value);
     }
 }
