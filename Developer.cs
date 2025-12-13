@@ -4,16 +4,16 @@ using System.Text;
 
 namespace AlgoUni_Tasks
 {
-    internal class Manager : IWorker
+    internal class Developer : IWorker
     {
         public double GetSalary()
         {
-            return 7_000;
+            return 5_000;
         }
 
         public void Work()
         {
-            Console.WriteLine("Manager is working");
+            Console.WriteLine("Deveoper is working!");
         }
     }
 }

@@ -4,16 +4,16 @@ using System.Text;
 
 namespace AlgoUni_Tasks
 {
-    internal class Car : IVehicle
+    internal class Bicycle : IVehicle
     {
         public void Start()
         {
-            Console.WriteLine("Car is moveing");
+            Console.WriteLine("Bicycle is moveing");
         }
 
         public void Stop()
         {
-            Console.WriteLine("Car stoped");
+            Console.WriteLine("Bicycle stoped");
         }
     }
 }

@@ -4,8 +4,8 @@ using System.Text;
 
 namespace AlgoUni_Tasks
 {
-    internal class Shape
+    internal interface IDrive
     {
-        public string Colour { get; set; }
+        public void Drive();
     }
 }

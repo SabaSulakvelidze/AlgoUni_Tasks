@@ -4,40 +4,25 @@ using System.Text;
 
 namespace AlgoUni_Tasks
 {
-    internal class Rectangle
+    internal class Rectangle : IShape
     {
-        private double width;
-        private double height;
+        public double Width { get; private set; }
+        public double Height { get; private set; }
 
-
-        public double Width
+        public Rectangle(double width, double height)
         {
-            set
-            {
-                if (value > 0) width = value;             
-            }
-            get
-            {
-                return width;            
-            }
+            Width = width;
+            Height = height;
         }
 
-        public double Height
+        public double CalculateArea()
         {
-            set
-            {
-                if (value > 0) height = value;             
-            }
-            get
-            {
-                return height;            
-            }
+            return Width * Height;
         }
 
-        public double Area { private set; get; }
-
-        
-
-      
+        public double CalculatePerimeter()
+        {
+            return 2 * (Width + Height);
+        }
     }
 }

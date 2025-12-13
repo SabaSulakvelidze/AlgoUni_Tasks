@@ -4,16 +4,16 @@ using System.Text;
 
 namespace AlgoUni_Tasks
 {
-    internal class Dog : IAnimal
+    internal class Cat : IAnimal
     {
         public void Eat()
         {
-            Console.WriteLine("Dog is eating!");
+            Console.WriteLine("Cat is eating!");
         }
 
         public void Speak()
         {
-            Console.WriteLine("woof!");
+            Console.WriteLine("Meaw!");
         }
     }
 }
