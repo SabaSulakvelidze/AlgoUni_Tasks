@@ -4,7 +4,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        //1)შექმენი ჯენერიკული კლასი სახელად Box, რომელიც ინახავს ერთ ფროფერთის. დაწერე მეთოდები ამ ფროფერთის
+        /*//1)შექმენი ჯენერიკული კლასი სახელად Box, რომელიც ინახავს ერთ ფროფერთის. დაწერე მეთოდები ამ ფროფერთის
         //მნიშვნელობის დასაყენებლად და დასაბრუნებლად. შექმენი Box<string> და Box<int> ობიექტები და ტესტი ჩაატარე.
         Box<int> intBox = new();
         intBox.Value = 22;
@@ -44,34 +44,60 @@ internal class Program
         List<int> intArr = new List<int> { 1, 1, 2, 2, 3, 3, 4, 5, 6 };
         RemoveDuplicates<int>(intArr).ForEach(Console.WriteLine);
         List<string> strArr = new List<string> { "red", "blue", "red", "green", "green", "yellow" };
-        RemoveDuplicates<string>(strArr).ForEach(Console.WriteLine);
+        RemoveDuplicates<string>(strArr).ForEach(Console.WriteLine);*/
 
         //შექმენით List<int>, რომელიც შეიცავს რიცხვებს 1 - დან 10 - მდე.დაამატეთ ამ სიაში რიცხვი 11 და გამოიტანეთ სიის
         //ყველა ელემენტი.
+        List<int> list = Enumerable.Range(1, 10).ToList();
+        list.Add(11);
+        list.ForEach(e => Console.WriteLine(e));
 
         //შექმენით List<string>, რომელიც შეიცავს ხუთ სახელისგან შემდგარ სიას. წაშალეთ სიის მეორე ელემენტი და გამოიტანეთ
         //დარჩენილი ელემენტები.
+        List<string> nameList = new() { "Jon", "Mary", "George", "Saba", "Anna" };
+        nameList.RemoveAt(1);
+        nameList.ForEach(e => Console.WriteLine(e));
 
         //შექმენით List<double> და დაამატეთ მასში ხუთი შემთხვევითი მნიშვნელობა.იპოვეთ და გამოიტანეთ სიის მაქსიმალური მნიშვნელობა.
+        Random rand = new Random();
+        List<double> dbList = Enumerable.Range(1, 5).Select(e => rand.NextDouble() * 10).ToList();
+        Console.WriteLine(dbList.Max());
 
         //შექმენით List<int> და დაამატეთ მასში რიცხვები 1 - დან 5 - მდე.შემდეგ გადაახარისხეთ სია უკუ - მიმართულებით
         //და გამოიტანეთ შედეგი.
+        List<int> list1 = Enumerable.Range(1, 5).ToList();
+        list1.Reverse();
+        list1.ForEach(e => Console.WriteLine(e));
 
         //შექმენით List<string>, რომელიც შეიცავს ხუთი სხვადასხვა სახელს.შეამოწმეთ, შეიცავს თუ არა სია სახელ "Anna" - ს
         //და შედეგი დააბრუნეთ ეკრანზე.
+        string name = "Anna";
+        Console.WriteLine(nameList.Contains(name) ? $"List Contains name {name}" : $"List does not Contain name {name}");
 
         //შექმენით List<int>, დაამატეთ მასში შემთხვევითი რიცხვები და იპოვეთ სიის საშუალო მნიშვნელობა.
+        List<int> intList = Enumerable.Range(1, 10).Select(e => rand.Next(1,100)).ToList();
+        Console.WriteLine(intList.Average());
 
         //შექმენით List<string>, დაამატეთ მასში სიტყვები "apple", "banana", "cherry", "date", და "elderberry".იპოვეთ
         //სიის ყველაზე გრძელი სიტყვა.
+        List<string> fruitList = new() { "apple", "banana", "cherry", "date", "elderberry" };
+        Console.WriteLine(fruitList.OrderBy(f => f.Length).Last());
 
         //შექმენით List<int> და დაამატეთ მასში რიცხვები 1 - დან 20 - მდე.წაშალეთ ყველა ლუწი რიცხვი და გამოიტანეთ შედეგი.
+        List<int> intList1 = Enumerable.Range(1, 10).ToList();
+        intList1.RemoveAll(n => n % 2 == 0);
+        intList1.ForEach(e => Console.WriteLine(e));
 
         //შექმენით List<string> და დაამატეთ მასში 5 ციფრი როგორც ტექსტური სტრინგები("1", "2", "3" და ა.შ.). გადაიყვანეთ
         //ეს სტრინგები რიცხვებად და იპოვეთ სიის ჯამი.
+        List<string> list2 = new() { "1", "2", "3", "4", "5" };
+        Console.WriteLine(list2.Select(int.Parse).Sum());
 
         //შექმენით List<int> და დაამატეთ მასში რიცხვები 10 - დან 20 - მდე.იპოვეთ და წაშალეთ სიის ყველა რიცხვი, რომელიც
         //მეტია 15 - ზე.
+        List<int> list3 = Enumerable.Range(10, 20).ToList();
+        list3.RemoveAll(n => n > 15);
+        list3.ForEach(Console.WriteLine);
 
         //შექმენით Dictionary<int, string>, რომელიც შეიცავს 5 წყვილს, სადაც key არის რიცხვი და value არის რიცხვის
         //დასახელება(მაგ.: 1-> "One").დაამატეთ ახალი წყვილი და გამოიტანეთ ყველა წყვილი.
