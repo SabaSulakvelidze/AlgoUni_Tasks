@@ -4,7 +4,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        /*//1)შექმენი ჯენერიკული კლასი სახელად Box, რომელიც ინახავს ერთ ფროფერთის. დაწერე მეთოდები ამ ფროფერთის
+        //1)შექმენი ჯენერიკული კლასი სახელად Box, რომელიც ინახავს ერთ ფროფერთის. დაწერე მეთოდები ამ ფროფერთის
         //მნიშვნელობის დასაყენებლად და დასაბრუნებლად. შექმენი Box<string> და Box<int> ობიექტები და ტესტი ჩაატარე.
         Box<int> intBox = new();
         intBox.Value = 22;
@@ -36,7 +36,7 @@ internal class Program
         //ტესტი ჩაატარე
         Pair<string, int> pair = new();
         pair.FisrtValue = "Age";
-        pair.SecondValue= 23;
+        pair.SecondValue = 23;
         Console.WriteLine($"{pair.FisrtValue} | {pair.SecondValue}");
 
         //5)დაწერე ჯენერიკული მეთოდი, რომელიც სიიდან ამოიღებს დუბლიკატებს. შეამოწმე მეთოდი სტრინგებისა და მთელი
@@ -75,7 +75,7 @@ internal class Program
         Console.WriteLine(nameList.Contains(name) ? $"List Contains name {name}" : $"List does not Contain name {name}");
 
         //შექმენით List<int>, დაამატეთ მასში შემთხვევითი რიცხვები და იპოვეთ სიის საშუალო მნიშვნელობა.
-        List<int> intList = Enumerable.Range(1, 10).Select(e => rand.Next(1,100)).ToList();
+        List<int> intList = Enumerable.Range(1, 10).Select(e => rand.Next(1, 100)).ToList();
         Console.WriteLine(intList.Average());
 
         //შექმენით List<string>, დაამატეთ მასში სიტყვები "apple", "banana", "cherry", "date", და "elderberry".იპოვეთ
@@ -97,7 +97,7 @@ internal class Program
         //მეტია 15 - ზე.
         List<int> list3 = Enumerable.Range(10, 20).ToList();
         list3.RemoveAll(n => n > 15);
-        list3.ForEach(Console.WriteLine);*/
+        list3.ForEach(Console.WriteLine);
 
         //შექმენით Dictionary<int, string>, რომელიც შეიცავს 5 წყვილს, სადაც key არის რიცხვი და value არის რიცხვის
         //დასახელება(მაგ.: 1-> "One").დაამატეთ ახალი წყვილი და გამოიტანეთ ყველა წყვილი.
