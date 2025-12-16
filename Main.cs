@@ -1,258 +1,165 @@
 ﻿using AlgoUni_Tasks;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Threading.Channels;
+using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        //1)შექმენი ჯენერიკული კლასი სახელად Box, რომელიც ინახავს ერთ ფროფერთის. დაწერე მეთოდები ამ ფროფერთის
-        //მნიშვნელობის დასაყენებლად და დასაბრუნებლად. შექმენი Box<string> და Box<int> ობიექტები და ტესტი ჩაატარე.
-        Box<int> intBox = new();
-        intBox.Value = 22;
-        Console.WriteLine(intBox.Value);
+        //1.Where მეთოდის დავალება:**
+        //გქონდეს რიცხვების სია(1 - 100) და გამოიყენე `Where` მეთოდი, რომ მოძებნო ყველა ისეთი რიცხვი, რომელიც 5 - ზე იყოფა.
+        List<int> intList = Enumerable.Range(1, 100).ToList();
+        foreach (var item in intList.Where(i => i % 5 == 0))
+            Console.WriteLine(item);
 
-        Box<string> stringBox = new();
-        stringBox.Value = "Hello";
-        Console.WriteLine(stringBox.Value);
-
-        //2)დაწერე ჯენერიკული მეთოდი, რომელიც მიიღებს მასივს და ინდექსს და დააბრუნებს ახალ მასივს, სადაც მოცემული
-        //ინდექსის ელემენტს ამოიღებს,შეამოწმე მეთოდი სტრინგებისა და მთელი რიცხვების მასივზე.
-        int[] arr = { 1, 2, 3, 4, 5 };
-        int[] newArr = RemoveElement<int>(arr, 3);
-        Array.ForEach(newArr, Console.WriteLine);
-
-        string[] stArr = { "blue", "red", "green", "yellow" };
-        string[] newStArr = RemoveElement<string>(stArr, 1);
-        Array.ForEach(newStArr, Console.WriteLine);
-
-        //3)შექმენი ჯენერიკული ინტერფეისი სახელად IDisplay, რომელსაც ექნება ერთი მეთოდი Display, რომელიც ეკრანზე
-        //გამოიტანს ობიექტის მნიშვნელობას.შექმენი კლასი, რომელიც ახორციელებს ამ ინტერფეისს და გამოიტანს სტრინგებსა და რიცხვებს.
-        //შექმენი ორი კლასი, ერთი სტრინგებისთვის, მეორე კი რიცხვებისთვის და შეამოწმე.
-        IntDisplayer intDisplayer = new();
-        intDisplayer.Display(15);
-        StringDisplayer stringDisplayer = new();
-        stringDisplayer.Display("Hi");
-
-        //4)შექმენი ჯენერიკული კლასი Pair, რომელიც ორი ტიპის ფროფერთის შეიცავს.შექმენი Pair<string, int> ობიექტი და
-        //ტესტი ჩაატარე
-        Pair<string, int> pair = new();
-        pair.FisrtValue = "Age";
-        pair.SecondValue = 23;
-        Console.WriteLine($"{pair.FisrtValue} | {pair.SecondValue}");
-
-        //5)დაწერე ჯენერიკული მეთოდი, რომელიც სიიდან ამოიღებს დუბლიკატებს. შეამოწმე მეთოდი სტრინგებისა და მთელი
-        //რიცხვების სიაზე
-        List<int> intArr = new List<int> { 1, 1, 2, 2, 3, 3, 4, 5, 6 };
-        RemoveDuplicates<int>(intArr).ForEach(Console.WriteLine);
-        List<string> strArr = new List<string> { "red", "blue", "red", "green", "green", "yellow" };
-        RemoveDuplicates<string>(strArr).ForEach(Console.WriteLine);
-
-        //შექმენით List<int>, რომელიც შეიცავს რიცხვებს 1 - დან 10 - მდე.დაამატეთ ამ სიაში რიცხვი 11 და გამოიტანეთ სიის
-        //ყველა ელემენტი.
-        List<int> list = Enumerable.Range(1, 10).ToList();
-        list.Add(11);
-        list.ForEach(e => Console.WriteLine(e));
-
-        //შექმენით List<string>, რომელიც შეიცავს ხუთ სახელისგან შემდგარ სიას. წაშალეთ სიის მეორე ელემენტი და გამოიტანეთ
-        //დარჩენილი ელემენტები.
-        List<string> nameList = new() { "Jon", "Mary", "George", "Saba", "Anna" };
-        nameList.RemoveAt(1);
-        nameList.ForEach(e => Console.WriteLine(e));
-
-        //შექმენით List<double> და დაამატეთ მასში ხუთი შემთხვევითი მნიშვნელობა.იპოვეთ და გამოიტანეთ სიის მაქსიმალური მნიშვნელობა.
-        Random rand = new Random();
-        List<double> dbList = Enumerable.Range(1, 5).Select(e => rand.NextDouble() * 10).ToList();
-        Console.WriteLine(dbList.Max());
-
-        //შექმენით List<int> და დაამატეთ მასში რიცხვები 1 - დან 5 - მდე.შემდეგ გადაახარისხეთ სია უკუ - მიმართულებით
-        //და გამოიტანეთ შედეგი.
-        List<int> list1 = Enumerable.Range(1, 5).ToList();
-        list1.Reverse();
-        list1.ForEach(e => Console.WriteLine(e));
-
-        //შექმენით List<string>, რომელიც შეიცავს ხუთი სხვადასხვა სახელს.შეამოწმეთ, შეიცავს თუ არა სია სახელ "Anna" - ს
-        //და შედეგი დააბრუნეთ ეკრანზე.
-        string name = "Anna";
-        Console.WriteLine(nameList.Contains(name) ? $"List Contains name {name}" : $"List does not Contain name {name}");
-
-        //შექმენით List<int>, დაამატეთ მასში შემთხვევითი რიცხვები და იპოვეთ სიის საშუალო მნიშვნელობა.
-        List<int> intList = Enumerable.Range(1, 10).Select(e => rand.Next(1, 100)).ToList();
-        Console.WriteLine(intList.Average());
-
-        //შექმენით List<string>, დაამატეთ მასში სიტყვები "apple", "banana", "cherry", "date", და "elderberry".იპოვეთ
-        //სიის ყველაზე გრძელი სიტყვა.
-        List<string> fruitList = new() { "apple", "banana", "cherry", "date", "elderberry" };
-        Console.WriteLine(fruitList.OrderBy(f => f.Length).Last());
-
-        //შექმენით List<int> და დაამატეთ მასში რიცხვები 1 - დან 20 - მდე.წაშალეთ ყველა ლუწი რიცხვი და გამოიტანეთ შედეგი.
-        List<int> intList1 = Enumerable.Range(1, 10).ToList();
-        intList1.RemoveAll(n => n % 2 == 0);
-        intList1.ForEach(e => Console.WriteLine(e));
-
-        //შექმენით List<string> და დაამატეთ მასში 5 ციფრი როგორც ტექსტური სტრინგები("1", "2", "3" და ა.შ.). გადაიყვანეთ
-        //ეს სტრინგები რიცხვებად და იპოვეთ სიის ჯამი.
-        List<string> list2 = new() { "1", "2", "3", "4", "5" };
-        Console.WriteLine(list2.Select(int.Parse).Sum());
-
-        //შექმენით List<int> და დაამატეთ მასში რიცხვები 10 - დან 20 - მდე.იპოვეთ და წაშალეთ სიის ყველა რიცხვი, რომელიც
-        //მეტია 15 - ზე.
-        List<int> list3 = Enumerable.Range(10, 20).ToList();
-        list3.RemoveAll(n => n > 15);
-        list3.ForEach(Console.WriteLine);
-
-        //შექმენით Dictionary<int, string>, რომელიც შეიცავს 5 წყვილს, სადაც key არის რიცხვი და value არის რიცხვის
-        //დასახელება(მაგ.: 1-> "One").დაამატეთ ახალი წყვილი და გამოიტანეთ ყველა წყვილი.
-        Dictionary<int, string> dictionary = new() {
-            { 1, "one" },
-            { 2, "two" },
-            { 3, "three" },
-            { 4, "four" },
-            { 5, "five" }
+        // 2.Select მეთოდის დავალება:**
+        //შექმენი სტუდენტების სია, სადაც თითოეულ სტუდენტს აქვს `Id`, `Name`, და `Age`. გამოიყენე `Select` მეთოდი,
+        //რათა აიღო სტუდენტების მხოლოდ სახელები და მათი ასაკები.
+        List<Student> students = new() {
+            {new Student(1,"Giorgi",19) },
+            {new Student(2,"Ana",23) },
+            {new Student(3,"Mari",21) },
+            {new Student(4,"Giorgi",20) },
+            {new Student(5,"Ana",18) },
+            {new Student(6,"Luka",25) },
+            {new Student(7,"Nino",19) }
         };
-        dictionary.Add(7,"seven");
-        foreach (var item in dictionary)
-            Console.WriteLine($"key: {item.Key} | value: {item.Value}");
 
-        //შექმენით Dictionary<string, int>, რომელიც შეიცავს 5 სტუდენტის სახელს და მათ შეფასებებს.იპოვეთ სტუდენტი,
-        //რომლის შეფასება ყველაზე მაღალია.
-        Dictionary<string, int> grades = new() {
-            {"john",33 },
-            {"mary",67 },
-            {"george",97 },
-            {"luke",57 },
-            {"anna",85 }
+        List<Student> newStudents = students.Select(s => new Student(s.Name, s.Age)).ToList();
+        newStudents.ForEach(s => Console.WriteLine($"{s.Name} - {s.Age}"));
+
+        // 3.OrderBy მეთოდის დავალება:**
+        //შექმენი პროდუქტების სია, სადაც თითოეულ პროდუქტს აქვს `Name` და `Price`. გამოიყენე `OrderBy`, რომ დაალაგო
+        //პროდუქტები ფასის მიხედვით ზრდადობით.
+        List<Product> products = new List<Product> {
+            new("Laptop", 2500.00),
+            new("Mouse", 35.50),
+            new("Monitor 27''", 549.99),
+            new("Keyboard", 75.00),
+            new("Headphones", 120.99)
         };
-        int maxGrade = grades.Select(i => i.Value).ToList().Max();
-        Console.WriteLine(grades.Where(i=>i.Value==maxGrade).First().Key);
+        List<Product> orderedAsc = products.OrderBy(p => p.Price).ToList();
+        orderedAsc.ForEach(Console.WriteLine);
 
-        //შექმენით Dictionary<string, string>, დაამატეთ 3 ქვეყნის სახელი და მათი დედაქალაქები.შეცვალეთ ერთი ქვეყნის
-        //დედაქალაქი და გამოიტანეთ განახლებული სია.
-        Dictionary<string, string> countries = new() {
-            { "Georgia", "Kutaisi" },
-            { "France", "Paris" },
-            { "India", "New Dehli" },
+        // 4.OrderByDescending მეთოდის დავალება:**
+        //გამოიყენე იგივე პროდუქტების სია და `OrderByDescending`, რომ დაალაგო პროდუქტები ფასის მიხედვით კლებადობით.
+        List<Product> orderedDesc = products.OrderByDescending(p => p.Price).ToList();
+        orderedDesc.ForEach(Console.WriteLine);
+
+        // 5.GroupBy მეთოდის დავალება:**
+        //შექმენი თანამშრომლების სია, სადაც თითოეულ მათგანს აქვს `Department` და `Salary`. გამოიყენე `GroupBy`,
+        //რომ დაჯგუფო თანამშრომლები დეპარტამენტის მიხედვით.
+        List<Employee> employees = new List<Employee>{
+            new("Giorgi", "IT", 65000.00),
+            new("Anna", "HR", 48000.50),
+            new("Luka", "Sales", 55000.75),
+            new("Mari", "IT", 72000.00),
+            new("Beka", "Marketing", 51500.25)
         };
-        countries["Georgia"] = "Tbilisi";
-        foreach (var item in countries)
-            Console.WriteLine($"{item.Key} : {item.Value}");
-
-        //შექმენით Dictionary<int, string>, სადაც შეინახავთ მანქანის ნომრებს და მძღოლის სახელს.წაშალეთ ერთი ელემენტი
-        //და გამოიტანეთ დარჩენილი მონაცემები.
-        Dictionary<int, string> drivers = new()
+        var gropuped = employees.GroupBy(e => e.Department).ToList();
+        gropuped.ForEach(g =>
         {
-            { 471, "Giorgi" },
-            { 123, "Tamar" },
-            { 555, "Lasha" },
-            { 117, "Mariami" }
-        };
-        drivers.Remove(555);
-        foreach (var item in drivers)
-            Console.WriteLine($"{item.Key} : {item.Value}");
+            Console.WriteLine(g.Key);
+            foreach (var item in g)
+                Console.WriteLine(item);
+        });
 
-        //შექმენით Dictionary<string, int>, რომელიც შეიცავს 5 სტუდენტის სახელს და მათი ასაკები.იპოვეთ სტუდენტი,
-        //რომლის ასაკი არის 18 წელზე ნაკლები.
-        Dictionary<string, int> students = new()
+        // 6.Join მეთოდის დავალება:**
+        //გქონდეს ორი სია: სტუდენტები და კურსები, სადაც თითოეულ სტუდენტს აქვს `Id`, ხოლო თითოეულ კურსს აქვს `StudentId`
+        //და `CourseName`. გამოიყენე `Join`, რომ შეაერთო სტუდენტების სახელები და კურსები.
+        List<Student> students6 = new List<Student>
         {
-            { "Luka", 21 },
-            { "Ana", 17 },
-            { "Davit", 22 },
-            { "Eka", 20 },
-            { "Sandro", 15 }
+            new (1, "Giorgi"),
+            new (2, "Ana"),
+            new (3, "Mari"),
+            new (4, "Giorgi"),
+            new (5, "Beka"),
+            new (6, "Luka"),
+            new (7, "Nino")
         };
-
-        Dictionary<string, int> ofAgeStudents = students.Where(s => s.Value < 18).ToDictionary<string, int>();
-        foreach (var item in ofAgeStudents)
-            Console.WriteLine($"{item.Key} : {item.Value}");
-
-        //შექმენით Dictionary<int, string> და დაამატეთ 5 ქალაქის დასახელება მათი ID-ების მიხედვით.შეამოწმეთ, შეიცავს
-        //თუ არა სია ქალაქის სახელ "Tbilisi" - ს და შედეგი გამოიტანეთ.
-        Dictionary<int, string> cities = new()
+        List<Course> courses6 = new List<Course>
         {
-            { 1, "Tbilisi" },
-            { 2, "Kutaisi" },
-            { 3, "Batumi" },
-            { 4, "Rustavi" },
-            { 5, "Gori" }
+            new(1, "Algorithms"),
+            new(1, "Database Systems"),
+            new(2, "Web Development"),
+            new(2, "UX Design"),
+            new(2, "Data Structures"),
+            new(3, "Cloud Computing")
         };
-        Console.WriteLine(cities.ContainsValue("Tbilisi"));
+        var joinedWithQuery = from stud in students6
+                         join course in courses6 on stud.Id equals course.StudentId
+                         select new
+                         {
+                             stud.Id,
+                             stud.Name,
+                             course.CourseName
+                         };
+        foreach (var i in joinedWithQuery)
+            Console.WriteLine($"{i.Id}, {i.Name}, {i.CourseName}");
 
-        //შექმენით Dictionary<string, string>, რომელიც შეიცავს 5 წიგნის ავტორს და მათ წიგნებს.დაამატეთ ახალი ავტორი
-        //და წიგნი და გამოიტანეთ განახლებული სია.
-        Dictionary<string, string> books = new()
-        {
-            { "Jane Austen", "Pride and Prejudice" },
-            { "George Orwell", "1984" },
-            { "F. Scott Fitzgerald", "The Great Gatsby" },
-            { "Virginia Woolf", "Mrs. Dalloway" },
-            { "J.R.R. Tolkien", "The Hobbit" }
-        };
-        books.Add("Ernest Hemingway", "The Old Man and the Sea");
-        foreach (var item in books)
-            Console.WriteLine($"{item.Key} : {item.Value}");
+        var joinedWithMethod = students6.Join(courses6,
+            s => s.Id,
+            c => c.StudentId,
+            (s, c) => new
+            {
+                s.Id,
+                s.Name,
+                c.CourseName
+            });
+        Console.WriteLine("==================");
+        foreach (var i in joinedWithMethod)
+            Console.WriteLine($"{i.Id}, {i.Name}, {i.CourseName}");
 
-        //შექმენით Dictionary<int, string> და შეინახეთ თვეების დასახელებები მათი რიგითი ნომრების მიხედვით(1->January,
-        //2->February და ა.შ.).დაამატეთ ახალი თვე და გამოიტანეთ სია.
-        Dictionary<int, string> months = new()
-        {
-            { 1, "January" },
-            { 2, "February" },
-            { 3, "March" },
-            { 4, "April" },
-            { 5, "May" },
-            { 6, "June" },
-            { 7, "July" },
-            { 8, "August" },
-            { 9, "September" },
-            { 10, "October" },
-            { 11, "November" },
-            { 12, "December" }
-        };
-        months.Add(13, "Mecamete");
-        foreach (var item in months)
-            Console.WriteLine($"{item.Key} : {item.Value}");
+        // 7.Count მეთოდის დავალება:**
+        //გქონდეს სახელების სია, და გამოიყენე `Count` მეთოდი, რომ დათვალო რამდენი სახელი შეიცავს ასო "a" - ს.
+        var namesList = students6.Select(s => s.Name).ToList();
+        Console.WriteLine(namesList.Count(n => n.Contains('a')));
 
-        //შექმენით Dictionary<int, string>, რომელიც შეიცავს 5 სხვადასხვა პროდუქტს მათი ID-ების მიხედვით.იპოვეთ პროდუქტი,
-        //რომლის ID უდრის 3 - ს და გამოიტანეთ მისი სახელი.
-        Dictionary<int, string> products = new()
-        {
-            { 1, "Laptop" },
-            { 2, "Mouse" },
-            { 3, "Keyboard" },
-            { 4, "Monitor" },
-            { 5, "Webcam" }
-        };
-        Console.WriteLine(products[3]);
+        // 8.Sum მეთოდის დავალება:**
+        //გქონდეს რიცხვების სია და გამოიყენე `Sum`, რომ გამოიანგარიშო ყველა რიცხვის ჯამი.
+        Console.WriteLine(intList.Sum());
 
-        //შექმენით Dictionary<string, int> და დაამატეთ 5 სტუდენტის მონაცემები(სახელი -> შეფასება). შეცვალეთ ერთ-ერთი
-        //სტუდენტის შეფასება და გამოიტანეთ განახლებული მონაცემები.
-        Dictionary<string, int> stidentsGrades = new() {
-            {"john",33 },
-            {"mary",67 },
-            {"george",97 },
-            {"luka",57 },
-            {"anna",85 }
-        };
-        stidentsGrades["luka"] = 89;
-        foreach (var item in stidentsGrades)
-            Console.WriteLine($"{item.Key} : {item.Value}");
+        // 9.Average მეთოდის დავალება:**
+        //გქონდეს თანამშრომლების სია, სადაც თითოეულ თანამშრომელს აქვს `Salary`. გამოიყენე `Average`, რომ გამოიანგარიშო
+        //თანამშრომლების საშუალო ხელფასი.
+        Console.WriteLine($"average salary: {employees.Average(e=>e.Salary)}");
+
+        // 10.Max მეთოდის დავალება:**
+        //გქონდეს პროდუქტების სია, სადაც თითოეულ პროდუქტს აქვს `Price`. გამოიყენე `Max`, რომ იპოვო ყველაზე მაღალი ფასი.
+        Console.WriteLine($"max price: {products.Max(p => p.Price)}");
+
+        // 11.Min მეთოდის დავალება:**
+        //გამოიყენე იგივე პროდუქტების სია და `Min`, რომ იპოვო ყველაზე დაბალი ფასი.
+        Console.WriteLine($"max price: {products.Min(p => p.Price)}");
+
+        // 12.First მეთოდის დავალება:**
+        //გქონდეს რიცხვების სია და გამოიყენე `First`, რომ იპოვო პირველი რიცხვი, რომელიც მეტია 10 - ზე.
+        Console.WriteLine(intList.First(i => i > 10));
+
+        // 13.FirstOrDefault მეთოდის დავალება:**
+        //გამოიყენე იგივე რიცხვების სია და `FirstOrDefault`, რომ იპოვო პირველი რიცხვი, რომელიც მეტია 100 - ზე.
+        //თუ ასეთი არ არსებობს, დაბრუნდეს ნულოვანი მნიშვნელობა.
+        Console.WriteLine(intList.FirstOrDefault(i => i > 100, 0));
+
+        // 14.Distinct მეთოდის დავალება:**
+        //გქონდეს სტუდენტების სახელების სია, სადაც ზოგიერთ სახელზე განმეორება ხდება.გამოიყენე `Distinct`,
+        //რომ მიიღო მხოლოდ უნიკალური სახელები.
+        var distinctNames = students.Select(s => s.Name).Distinct();
+        foreach (var item in distinctNames)
+            Console.WriteLine(item);
+
+        var distinctByNames = students.DistinctBy(s => s.Name).ToList();
+        foreach (var item in distinctByNames)
+            Console.WriteLine(item);
+        // 15.Any მეთოდის დავალება:**
+        //გქონდეს რიცხვების სია და გამოიყენე `Any`, რომ შეამოწმო, არსებობს თუ არა სია, რომელშიც რიცხვი 50 - ზე მეტია.
+        Console.WriteLine(intList.Any(i => i > 50));
+        Console.WriteLine(intList.Any(i => i > 150));
+
     }
 
-    public static T[] RemoveElement<T>(T[] arr, int index)
-    {
-        if (index >= arr.Length)
-        {
-            Console.WriteLine("Index is out of bound!");
-            return null;
-        }
-        T[] result = new T[arr.Length - 1];
-        for (int i = 0; i < index; i++)
-            result[i] = arr[i];
-        for (int i = index+1; i < arr.Length; i++)
-            result[i-1] = arr[i];
-        return result;
-    }
-
-    public static List<T> RemoveDuplicates<T>(List<T> list)
-    {
-       return list.Distinct().ToList(); 
-    }
+    
 }
